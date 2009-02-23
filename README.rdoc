@@ -20,7 +20,7 @@ After installation, you can add profiles through the administrative interface an
   <ul>
     <r:profiles:each>
       <li>
-        <p>Name: <r:profile:full_name/></p>
+        <p>Name: <r:profile:name/></p>
         <p>Title: <r:profile:title/></p>
         <p>Biography: <r:profile:biography/></p>
       </li>
