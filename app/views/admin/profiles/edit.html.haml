@@ -1,0 +1,64 @@
+- content_for 'page_css' do
+  :sass
+    div.biography
+      margin: 5px 20px
+      color: #444
+
+    p.title
+      margin: 10px 0 !important
+
+    #content .form-area div.error-with-field
+      input.textbox
+        font-family: Georgia,Palatino,"Times New Roman",Times,serif
+        font-size: 200%
+        width: 100%
+
+    textarea.textarea
+      height: 150px !important
+      width: 100%
+      display: block
+
+    select.selectbox
+      font-family: Georgia,Palatino,"Times New Roman",Times,serif
+      font-size: 150%
+
+    input.file
+      margin: 50px 0
+
+    img.photo
+      margin: 5px 0
+      border: 2px solid #fff
+
+%h1= @profile.new_record? ? 'New Staff Profile' : 'Edit Staff Profile'
+
+- form_for_profile @profile do |f|
+  .form-area
+    %p.title
+      %label First Name
+      = f.text_field :first_name, :class => 'textbox'
+    %p.title
+      %label Last Name
+      = f.text_field :last_name, :class => 'textbox'
+    %p.title
+      %label Title
+      = f.text_field :title, :class => 'textbox'
+    %p.title
+      %label Email
+      = f.text_field :email, :class => 'textbox'
+    %p.title
+      %label Biography
+      = f.text_area :biography, :class => 'textarea'
+    %p.title
+      %label Status
+      = f.collection_select :status_id, Status.find_all, :id, :name, {}, :class => 'selectbox'
+    %p.title
+      %label Photo
+      = image_tag(@profile.photo.url(:profile), :class => 'photo')
+      %br
+      = f.file_field :photo, :class => 'button'
+    
+  %p.buttons
+    - button_text = @profile.new_record? ? 'Create' : 'Save Changes'
+    = submit_tag button_text, :class => 'button'
+    or
+    = link_to 'Cancel', admin_profiles_url

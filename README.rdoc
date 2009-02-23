@@ -1,0 +1,36 @@
+= Staff Profiles
+
+Staff Profiles is an extension to the Radiant CMS. It allows you to create easily updated profiles for people. Examples include company management bios, faculty profiles for an educational institution, customers, or other important personnel.
+
+== Installation
+
+Install the extension from GitHub (for latest edge version, or use a tag):
+
+  git clone git://github.com/zapnap/radiant-staff-profiles-extension.git vendor/extensions/staff_profiles
+
+Once you've done that you can run the supplied Rake task to migrate your Radiant project database:
+
+  rake radiant:extensions:staff_profiles:migrate
+  rake radiant:extensions:staff_profiles:update
+
+== Usage
+
+After installation, you can add profiles through the administrative interface and then use the supplied Radius tags to display that information within a page body:
+
+  <ul>
+    <r:profiles:each>
+      <li>
+        <p>Name: <r:profile:full_name/></p>
+        <p>Title: <r:profile:title/></p>
+        <p>Biography: <r:profile:biography/></p>
+      </li>
+    </r:profiles:each>
+  </ul>
+
+Other tag attributes are available. See the documentation for the full list.
+
+== Credits
+
+This extension contains the Paperclip Rails plugin v2.1.5 (c) 2009 Thoughtbot. All other work (c) 2009 Nick Plante.
+
+http://github.com/zapnap/radiant-flash-gallery-extension

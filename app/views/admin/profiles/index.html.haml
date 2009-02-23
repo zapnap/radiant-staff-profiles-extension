@@ -1,0 +1,53 @@
+- content_for 'page_css' do
+  :sass
+    p.new
+      a
+        color: #000
+        border: 1px solid #ddf
+        padding: 6px
+        text-decoration: none
+
+        &:hover
+          background: #efefff
+
+    td.remove
+      width: 100px
+      font-size: 0.8em
+      vertical-align: center
+
+      a
+        text-decoration: none
+        color: #000
+
+      img
+        margin-bottom: 3px
+
+    #content #staff_profiles.index .page .info
+      top: 0
+
+%h1 Faculty &amp; Staff Profiles
+
+%table#staff_profiles.index{:summary=>"Listing of staff members"}
+  %thead
+    %tr
+      %th.name Name
+      %th.program Title
+      %th.status Status
+      %th.modify Modify
+  %tbody
+    - if @profiles.empty?
+      %tr
+        %td.note{:colspan => 5} No Profiles
+    - else 
+      - @profiles.each do |profile|
+        %tr.node.level-1{:id => "profile-#{profile.id}"}
+          %td.page
+            %span.w1
+              = link_to profile.full_name, edit_admin_profile_url(profile)
+
+          %td.title= profile.title
+          %td.status{:class => "#{profile.status.name.downcase}-status"}= profile.status.name
+          %td.remove
+            = link_to("#{image('minus.png')} Remove", admin_profile_url(profile), :method => :delete, :alt => 'remove profile', :confirm => 'Are you sure? This will delete the profile!')
+
+%p.new= link_to('New Profile', new_admin_profile_url)
