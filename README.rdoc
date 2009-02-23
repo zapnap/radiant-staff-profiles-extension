@@ -33,4 +33,4 @@ Other tag attributes are available. See the documentation for the full list.
 
 This extension contains the Paperclip Rails plugin v2.1.5 (c) 2009 Thoughtbot. All other work (c) 2009 Nick Plante.
 
-http://github.com/zapnap/radiant-flash-gallery-extension
+http://github.com/zapnap/radiant-staff-profiles-extension
