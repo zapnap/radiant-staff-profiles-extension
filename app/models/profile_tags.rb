@@ -11,10 +11,10 @@ module ProfileTags
   }
   tag 'profile' do |tag|
     if tag.attr['name']
-    name = tag.attr['name'].split(' ')
-    last_name = name.pop
-    first_name = name.join(' ')
-    tag.locals.profile = StaffProfile.find_by_first_name_and_last_name(first_name, last_name)
+      name = tag.attr['name'].split(' ')
+      last_name = name.pop
+      first_name = name.join(' ')
+      tag.locals.profile = StaffProfile.find_by_first_name_and_last_name(first_name, last_name)
     end
 
     raise TagError, "'profile' tag must contain a valid 'name' attribute." unless tag.locals.profile
